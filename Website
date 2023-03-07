@@ -8,6 +8,8 @@
 <h2>LunarCalc</h>
 <p id="para1">
 
+<!--START OF TABLE-->
+
 Enter Latitude of Location 1:<input type="text" id="lat1"/><br><br>			<!--Lat1-->
 Enter Longitude of Location 1:<input type="text" id="long1"/><br><br>			<!--Long1-->
 Enter Right Ascension of Location 1:<input type="text" id="ra1"/><br><br>		<!--RA1-->
@@ -22,10 +24,17 @@ Enter Altitude of Location 2:<input type="text" id="alt2"/><br><br>			<!--Alt2--
 
 <button type="submit" onclick="buttonClicked(lat1, long1, ra1, dec1, alt1, lat2, long2, ra2, dec2, alt2)">Submit</button>
 
+<!--END OF TABLE-->
+
 <script type="text/javascript">
 
 function buttonClicked(lat1, long1, ra1, dec1, alt1, lat2, long2, ra2, dec2, alt2){
-        var output_list = functionMain(lat1, long1, ra1, dec1, alt1, lat2, long2, ra2, dec2, alt2);
+        var distance_to_moon = functionMain(lat1, long1, ra1, dec1, alt1, lat2, long2, ra2, dec2, alt2);
+        return distance_to_moon
 }
+
+
+document.getElementById("para1").innerHTML = distance_to_moon;
+
 </script>
 </p>
