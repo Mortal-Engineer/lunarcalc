@@ -8,8 +8,6 @@
 <h2>LunarCalc</h>
 <p id="para1">
 
-<script type="text/javascript">
-
 Enter Latitude of Location 1:<input type="text" id="lat1"/><br><br>			<!--Lat1-->
 Enter Longitude of Location 1:<input type="text" id="long1"/><br><br>			<!--Long1-->
 Enter Right Ascension of Location 1:<input type="text" id="ra1"/><br><br>		<!--RA1-->
