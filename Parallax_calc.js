@@ -64,7 +64,7 @@ function distVincenty(lat1, lon1, lat2, lon2) {
 ///---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 function distTunnel(arc_length) {
-    const r = 6356752.3142;
+    const r = 6356.7523142;
     const θ = arc_length/r;
     const distance_tunnel = Math.sqrt(r**2 + r**2 - (2*r*r*Math.cos(θ)));
     return distance_tunnel
@@ -80,8 +80,7 @@ function parallaxAngle(ra1, dec1, ra2, dec2) {
         deltaDec = deltaDec * -1;
     }
     var parallaxtheta = Math.sqrt(deltaRa**2 + deltaDec **2);
-    var parallaxtheta_rad = toRad(parallaxtheta)
-    return parallaxtheta_rad
+    return parallaxtheta
 }
 
 function e_to_m_distance (att1, att2, parallaxtheta, distance_tunnel) {
@@ -95,14 +94,16 @@ function e_to_m_distance (att1, att2, parallaxtheta, distance_tunnel) {
     var MBA = NBA + att2;
     var MABrad = toRad(MAB);
     var MBArad = toRad(MBA);
-    var a_to_m_length = distance_tunnel*((Math.sin(MBArad))/(Math.sin(parallaxtheta)));
-    var b_to_m_length = distance_tunnel*(Math.sin(MABrad)/Math.sin(parallaxtheta));
-    return a_to_m_length;
-    return b_to_m_length
+    var parallaxtheta_rad = toRad(parallaxtheta)
+    var a_to_m_length = distance_tunnel*((Math.sin(MBArad))/(Math.sin(parallaxtheta_rad)));
+    var b_to_m_length = distance_tunnel*(Math.sin(MABrad)/Math.sin(parallaxtheta_rad));
+    return [a_to_m_length,b_to_m_length]
 }
 
-var arcdistance = distVincenty(51.509865, -0.118092, 34.341568, 108.940178)
-var distance_tunnel = distTunnel(arcdistance)
-var parallaxtheta_rad = parallaxAngle(343.0907917, 13.21736111, 341.8737083, 12.99247222)
-var length_to_moon = e_to_m_distance (13.6541666, 13.88044444, parallaxtheta_rad, distance_tunnel)
-console.log(length_to_moon)
+function distances_to_moon (lat1, long1, ra1, dec1, alt1, lat2, long2, ra2, dec2, alt2){
+    var arcdistance = distVincenty(lat1, long1, lat2, long2)/1000
+    var distance_tunnel = distTunnel(arcdistance)
+    var parallaxtheta = parallaxAngle(ra1,dec1,ra2,dec2)
+    var lengths_to_moon = e_to_m_distance (alt1, alt2, parallaxtheta, distance_tunnel)
+    return lengths_to_moon
+}
