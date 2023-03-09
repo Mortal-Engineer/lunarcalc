@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html>
         <head>
-                <script src="https://kazuma8.github.io/lunarcalc/Parallax_calc.js" type="text/javascript"></script> 
-        </head>
-        <body>
-                <h1>LunarCalc</h>
-                <p id="para1" style="font-size:20px;">
-                        
-                        <script type="text/javascript">
-                                function dms_dd(degrees, minutes, seconds){
+                <script src="./Parallax_calc.js" type="text/javascript"></script>
+                
+                <script type="text/javascript">
+                function dms_dd(degrees, minutes, seconds){
                                         total = degrees + minutes/60 + seconds/3600
                                 }
                                 
@@ -21,8 +17,11 @@
                                         var distance_to_moon = distances_to_moon(lat1Deg, long1Deg, ra1, dec1, alt1, lat2Deg, long2Deg, ra2, dec2, alt2);
                                         return distance_to_moon
                                 }
-                                
-                        </script>
+                </script> 
+        </head>
+        <body>
+                <h1>LunarCalc</h>
+                <p id="para1" style="font-size:20px;">
 
                         <!--START OF TABLE-->
 
