@@ -4,20 +4,42 @@
                 <script src="./Parallax_calc.js" type="text/javascript"></script>
                 
                 <script type="text/javascript">
-                function dms_dd(degrees, minutes, seconds){
-                                        total = degrees + minutes/60 + seconds/3600
-                                }
+                        function dms_dd(degrees, minutes, seconds){
+                                total = degrees + minutes/60 + seconds/3600
+                        }
                                 
-                                function buttonClicked(lat11, lat12, lat13, long11, long12, long13, ra1, dec1, alt1, lat21, lat22, lat23, long21, long22,long23, ra2, dec2, alt2){
-                                        var lat1Deg = dms_dd(lat11,lat12,lat13)
-                                        var long1Deg = dms_dd(long11, long12, long13)
-                                        var lat2Deg = dms_dd(lat21, lat22, lat23)
-                                        var long2Deg = dms_dd(long21, long22, long23)
-                                        
-                                        var distance_to_moon = distances_to_moon(lat1Deg, long1Deg, ra1, dec1, alt1, lat2Deg, long2Deg, ra2, dec2, alt2);
-                                        
-                                        document.getElementById("para2").innerHTML = distance_to_moon
-                                }
+                        function buttonClicked(lat11, lat12, lat13, long11, long12, long13, ra1, dec1, alt1, lat21, lat22, lat23, long21, long22,long23, ra2, dec2, alt2){
+                                lat11 = parseInt(lat11)
+                                lat12 = parseInt(lat12)
+                                lat13 = parseInt(lat13)
+                                long11 = parseInt(long11)
+                                long12 = parseInt(long12)
+                                long13 = parseInt(long13)
+                                ra1 = parseInt(ra1)
+                                dec1 = parseInt(dec1)
+                                alt1 = parseInt(alt1)
+                                lat21 = parseInt(lat21)
+                                lat22 = parseInt(lat22)
+                                lat23 = parseInt(lat23)
+                                long21 = parseInt(long21)
+                                long22 = parseInt(long22)
+                                long23 = parseInt(long23)
+                                ra2 = parseInt(ra2)
+                                dec2 = parseInt(dec2)
+                                alt2 = parseInt(alt2)
+                                
+                                var lat1Deg = dms_dd(lat11,lat12,lat13)
+                                var long1Deg = dms_dd(long11, long12, long13)
+                                var lat2Deg = dms_dd(lat21, lat22, lat23)
+                                var long2Deg = dms_dd(long21, long22, long23)
+
+                                var distance_to_moon = distances_to_moon(lat1Deg, long1Deg, ra1, dec1, alt1, lat2Deg, long2Deg, ra2, dec2, alt2);
+                                
+                                distance_to_moon.forEach(function(entry) {
+                                  document.getElementById("para2").innerHTML = distance_to_moon;
+                                });
+                                
+                        }
                 </script> 
         </head>
         <body>
