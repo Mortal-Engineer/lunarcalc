@@ -34,16 +34,18 @@
                                 long14 = parseFloat(long14)
                                 long24 = parseFloat(long24)
 
-                                var lat1Deg = dms_dd(lat11, lat12, lat13, lat14)
-                                var long1Deg = dms_dd(long11, long12, long13, long14)
-                                var lat2Deg = dms_dd(lat21, lat22, lat23, lat24)
-                                var long2Deg = dms_dd(long21, long22, long23, long24)
+                                let lat1Deg = dms_dd(lat11, lat12, lat13, lat14)
+                                let long1Deg = dms_dd(long11, long12, long13, long14)
+                                let lat2Deg = dms_dd(lat21, lat22, lat23, lat24)
+                                let long2Deg = dms_dd(long21, long22, long23, long24)
 
-                                var distance_to_moon = distances_to_moon(lat1Deg, long1Deg, ra1, dec1, alt1, lat2Deg, long2Deg, ra2, dec2, alt2);
+                                let distance_to_moon = distances_to_moon(lat1Deg, long1Deg, ra1, dec1, alt1, lat2Deg, long2Deg, ra2, dec2, alt2);
                                 
+                                document.getElementById("distance1").innerHTML = distance_to_moon[0]
+                                document.getElementById("distance2").innerHTML = distance_to_moon[1]
                                 
-                                document.getElementById("para2").innerHTML = distance_to_moon
-                               
+                                document.getElementByID("location1").innerHTML = lat1Deg, long1Deg
+                                document.getElementByID("location2").innerHTML = lat2Deg, long2Deg
                                 
                         }
                 </script> 
@@ -76,6 +78,32 @@
                         </script>
                         
                 </p>
-                <p id="para2" style="font-size:20px;"></p>
+                <p id="para2" style="font-size:20px;">
+                        <style>
+                                table.tb { width: 450px; border-collapse: collapse; }
+                                .tb th, .tb td { border: solid 1px #777; padding: 5px; }
+                                .tb thead { background-color: steelblue; color: white; font-size: 20px}
+                              </style>
+                              <h>Output:</h>
+                              <table class="tb">
+                                <thead>
+                                  <tr>
+                                    <th>Location</th>
+                                    <th>Distance</th>  
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td id="location1"></td>
+                                    <td id="location2"></td>
+                                  </tr>
+                                  <tr>
+                                    <td id="distance1"></td>
+                                    <td id="distance2"></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                        </p>
+                <p style="font-size:10px;">Based on work by Yiran Ma. <br>Kazumasa Miura, Blake Morris</p>
         </body>
 </html>
