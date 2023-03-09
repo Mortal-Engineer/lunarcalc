@@ -1,45 +1,81 @@
 <!DOCTYPE html>
 <html>
         <head>
-                <script src="Parallax_calc.js" type="text/javascript"></script> 
+                <script src="./Parallax_calc.js" type="text/javascript"></script>
+                
+                <script type="text/javascript">
+                        function dms_dd(degrees, minutes, seconds, direction){
+                                total = degrees + minutes/60 + seconds/3600
+                                total *= direction
+                                return total
+                        }
+                                
+                        function buttonClicked(lat11, lat12, lat13, long11, long12, long13, ra1, dec1, alt1, lat21, lat22, lat23, long21, long22,long23, ra2, dec2, alt2, lat14, long14, lat24, long24){
+                                lat11 = parseInt(lat11)
+                                lat12 = parseInt(lat12)
+                                lat13 = parseInt(lat13)
+                                long11 = parseInt(long11)
+                                long12 = parseInt(long12)
+                                long13 = parseInt(long13)
+                                ra1 = parseInt(ra1)
+                                dec1 = parseInt(dec1)
+                                alt1 = parseInt(alt1)
+                                lat21 = parseInt(lat21)
+                                lat22 = parseInt(lat22)
+                                lat23 = parseInt(lat23)
+                                long21 = parseInt(long21)
+                                long22 = parseInt(long22)
+                                long23 = parseInt(long23)
+                                ra2 = parseInt(ra2)
+                                dec2 = parseInt(dec2)
+                                alt2 = parseInt(alt2)
+                                lat14 = parseInt(lat14)
+                                lat24 = parseInt(lat24)
+                                long14 = parseInt(long14)
+                                long24 = parseInt(long24)
+
+                                var lat1Deg = dms_dd(lat11, lat12, lat13, lat14)
+                                var long1Deg = dms_dd(long11, long12, long13, long14)
+                                var lat2Deg = dms_dd(lat21, lat22, lat23, lat24)
+                                var long2Deg = dms_dd(long21, long22, long23, long24)
+
+                                var distance_to_moon = distances_to_moon(lat1Deg, long1Deg, ra1, dec1, alt1, lat2Deg, long2Deg, ra2, dec2, alt2);
+                                
+                                
+                                document.getElementById("para2").innerHTML = distance_to_moon
+                               
+                                
+                        }
+                </script> 
         </head>
         <body>
                 <h1>LunarCalc</h>
                 <p id="para1" style="font-size:20px;">
-                        
-                        <script type="text/javascript">
-                                
-                                function buttonClicked(lat1, long1, ra1, dec1, alt1, lat2, long2, ra2, dec2, alt2){
-                                        
-                                        var distance_to_moon = functionMain(lat1, long1, ra1, dec1, alt1, lat2, long2, ra2, dec2, alt2);
-                                        return distance_to_moon
-                                }
-                                
-                        </script>
 
                         <!--START OF TABLE-->
 
-                        Latitude of Location 1:<input type="number" id="lat1"/><br><br>			<!--Lat1-->
-                        Longitude of Location 1:<input type="number" id="long1"/><br><br>		<!--Long1-->
-                        Right Ascension of Location 1:<input type="number" id="ra1"/><br><br>		<!--RA1-->
-                        Declination of Location 1:<input type="number" id="dec1"/><br><br>		<!--Dec1-->
-                        Altitude of Location 1:<input type="number" id="alt1"/><br><br>			<!--Alt1-->
+                        Latitude of Location 1:<input type="number" id="lat11"/>˚<input type="number" id="lat12" max="89" min="0"/>'<input type="number" id="lat13"/>"<select id="lat1_ddm_dir"><option value="-1">S</option><option value="1">N</option></select><br><br>		        <!--Lat1-->
+                        Longitude of Location 1:<input type="number" id="long11"/>˚<input type="number" id="long12" max="179" min="0"/>'<input type="number" id="long13"/>"<select id="long1_ddm_dir"><option value="-1">W</option><option value="1">E</option></select><br><br>            	<!--Long1-->
+                        Right Ascension of Location 1:<input type="number" id="ra1"/>˚<br><br>	                                                                        	<!--RA1-->
+                        Declination of Location 1:<input type="number" id="dec1" max="90" min="-90"/>˚<br><br>	                                                                        	<!--Dec1-->
+                        Altitude of Location 1:<input type="number" id="alt1" max="359" min="0"/>˚<br><br>		                                                                        	<!--Alt1-->
                         <br><br>
-                        Latitude of Location 2:<input type="number" id="lat2"/><br><br>			<!--Lat2-->
-                        Longitude of Location 2:<input type="number" id="long2"/><br><br>		<!--Long2-->
-                        Right Ascension of Location 2:<input type="number" id="ra2"/><br><br>		<!--RA2-->
-                        Declination of Location 2:<input type="number" id="dec2"/><br><br>		<!--Dec2-->
-                        Altitude of Location 2:<input type="number" id="alt2"/><br><br>			<!--Alt2-->
+                        Latitude of Location 2:<input type="number" id="lat21"/>˚<input type="number" id="lat22" max="89" min="0"/>'<input type="number" id="lat23"/>"<select id="lat2_ddm_dir"><option value="-1">S</option><option value="1">N</option></select><br><br>                   <!--Lat2-->
+                        Longitude of Location 2:<input type="number" id="long21"/>˚<input type="number" id="long22" max="179" min="0"/>'<input type="number" id="long23"/>"<select id="long2_ddm_dir"><option value="-1">W</option><option value="1">E</option></select><br><br>	        <!--Long2-->
+                        Right Ascension of Location 2:<input type="number" id="ra2"/>˚<br><br>	                                                                        	<!--RA2-->
+                        Declination of Location 2:<input type="number" id="dec2" max="90" min="-90"/>˚<br><br>	                                                                        	<!--Dec2-->
+                        Altitude of Location 2:<input type="number" id="alt2" max="359" min="0"/>˚<br><br>		                                                                        	<!--Alt2-->
 
-                        <button type="submit" onclick="buttonClicked(lat1, long1, ra1, dec1, alt1, lat2, long2, ra2, dec2, alt2)">Submit</button>
+                        <button onclick="buttonClicked(document.getElementById('lat11').value, document.getElementById('lat12').value, document.getElementById('lat13').value, document.getElementById('long11').value, document.getElementById('long12').value, document.getElementById('long13').value, document.getElementById('ra1').value, document.getElementById('dec1').value, document.getElementById('alt1').value, document.getElementById('lat21').value, document.getElementById('lat22').value, document.getElementById('lat23').value, document.getElementById('long21').value, document.getElementById('long22').value,document.getElementById('long23').value, document.getElementById('ra2').value, document.getElementById('dec2').value, document.getElementById('alt2').value), document.getElementById('lat1_ddm_dir').value, document.getElementById('long1_ddm_dir').value, document.getElementById('lat2_ddm_dir').value, document.getElementById('long2_ddm_dir').value">Submit</button>
 
                         <!--END OF TABLE-->
                         
                         <script type="text/javascript">
                                 
-                                document.getElementById("para1").innerHTML = distance_to_moon;
+                                //document.getElementById("para1").innerHTML = window.distance_to_moon;
                         </script>
                         
                 </p>
+                <p id="para2" style="font-size:20px;"></p>
         </body>
 </html>
