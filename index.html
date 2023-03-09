@@ -6,6 +6,7 @@
                 <script type="text/javascript">
                         function dms_dd(degrees, minutes, seconds){
                                 total = degrees + minutes/60 + seconds/3600
+                                return total
                         }
                                 
                         function buttonClicked(lat11, lat12, lat13, long11, long12, long13, ra1, dec1, alt1, lat21, lat22, lat23, long21, long22,long23, ra2, dec2, alt2){
@@ -50,17 +51,17 @@
 
                         Latitude of Location 1:<input type="number" id="lat11"/>˚<input type="number" id="lat12"/>'<input type="number" id="lat13"/>"<br><br>		        <!--Lat1-->
                         Longitude of Location 1:<input type="number" id="long11"/>˚<input type="number" id="long12"/>'<input type="number" id="long13"/>"<br><br>            	<!--Long1-->
-                        Right Ascension of Location 1:<input type="number" id="ra1"/><br><br>	                                                                        	<!--RA1-->
-                        Declination of Location 1:<input type="number" id="dec1"/><br><br>	                                                                        	<!--Dec1-->
-                        Altitude of Location 1:<input type="number" id="alt1"/><br><br>		                                                                        	<!--Alt1-->
+                        Right Ascension of Location 1:<input type="number" id="ra1"/>˚<br><br>	                                                                        	<!--RA1-->
+                        Declination of Location 1:<input type="number" id="dec1"/>˚<br><br>	                                                                        	<!--Dec1-->
+                        Altitude of Location 1:<input type="number" id="alt1"/>˚<br><br>		                                                                        	<!--Alt1-->
                         <br><br>
                         Latitude of Location 2:<input type="number" id="lat21"/>˚<input type="number" id="lat22"/>'<input type="number" id="lat23"/>"<br><br>                   <!--Lat2-->
                         Longitude of Location 2:<input type="number" id="long21"/>˚<input type="number" id="long22"/>'<input type="number" id="long23"/>"<br><br>	        <!--Long2-->
-                        Right Ascension of Location 2:<input type="number" id="ra2"/><br><br>	                                                                        	<!--RA2-->
-                        Declination of Location 2:<input type="number" id="dec2"/><br><br>	                                                                        	<!--Dec2-->
-                        Altitude of Location 2:<input type="number" id="alt2"/><br><br>		                                                                        	<!--Alt2-->
+                        Right Ascension of Location 2:<input type="number" id="ra2"/>˚<br><br>	                                                                        	<!--RA2-->
+                        Declination of Location 2:<input type="number" id="dec2"/>˚<br><br>	                                                                        	<!--Dec2-->
+                        Altitude of Location 2:<input type="number" id="alt2"/>˚<br><br>		                                                                        	<!--Alt2-->
 
-                        <button onclick="buttonClicked(lat11, lat12, lat13, long11, long12, long13, ra1, dec1, alt1, lat21, lat22, lat23, long21, long22,long23, ra2, dec2, alt2)">Submit</button>
+                        <button onclick="buttonClicked(document.getElementById('lat11').value, document.getElementById('lat12').value, document.getElementById('lat13').value, document.getElementById('long11').value, document.getElementById('long12').value, document.getElementById('long13').value, document.getElementById('ra1').value, document.getElementById('dec1').value, document.getElementById('alt1').value, document.getElementById('lat21').value, document.getElementById('lat22').value, document.getElementById('lat23').value, document.getElementById('long21').value, document.getElementById('long22').value,document.getElementById('long23').value, document.getElementById('ra2').value, document.getElementById('dec2').value, document.getElementById('alt2').value)">Submit</button>
 
                         <!--END OF TABLE-->
                         
