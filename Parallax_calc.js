@@ -15,7 +15,7 @@ function toRad(Value) {
 }
 
 function distVincenty(lat1, lon1, lat2, lon2) {
-    let a = 6378137,
+    var a = 6378137,
         b = 6356752.3142,
         f = 1 / 298.257223563, // WGS-84 ellipsoid params
         L = toRad((lon2-lon1)),
@@ -30,13 +30,13 @@ function distVincenty(lat1, lon1, lat2, lon2) {
         lambdaP,
         iterLimit = 100;
     do {
-     let sinLambda = Math.sin(lambda),
+     var sinLambda = Math.sin(lambda),
          cosLambda = Math.cos(lambda),
          sinSigma = Math.sqrt((cosU2 * sinLambda) * (cosU2 * sinLambda) + (cosU1 * sinU2 - sinU1 * cosU2 * cosLambda) * (cosU1 * sinU2 - sinU1 * cosU2 * cosLambda));
      if (0 === sinSigma) {
       return 0; // co-incident points
      };
-     let cosSigma = sinU1 * sinU2 + cosU1 * cosU2 * cosLambda,
+     var cosSigma = sinU1 * sinU2 + cosU1 * cosU2 * cosLambda,
          sigma = Math.atan2(sinSigma, cosSigma),
          sinAlpha = cosU1 * cosU2 * sinLambda / sinSigma,
          cosSqAlpha = 1 - sinAlpha * sinAlpha,
@@ -53,7 +53,7 @@ function distVincenty(lat1, lon1, lat2, lon2) {
      return NaN; // formula failed to converge
     };
    
-    let uSq = cosSqAlpha * (a * a - b * b) / (b * b),
+    var uSq = cosSqAlpha * (a * a - b * b) / (b * b),
         A = 1 + uSq / 16384 * (4096 + uSq * (-768 + uSq * (320 - 175 * uSq))),
         B = uSq / 1024 * (256 + uSq * (-128 + uSq * (74 - 47 * uSq))),
         deltaSigma = B * sinSigma * (cos2SigmaM + B / 4 * (cosSigma * (-1 + 2 * cos2SigmaM * cos2SigmaM) - B / 6 * cos2SigmaM * (-3 + 4 * sinSigma * sinSigma) * (-3 + 4 * cos2SigmaM * cos2SigmaM))),
@@ -64,49 +64,47 @@ function distVincenty(lat1, lon1, lat2, lon2) {
 ///---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 function distTunnel(arc_length) {
-    const r = 6356752.3142;
+    const r = 6356.7523142;
     const θ = arc_length/r;
     const distance_tunnel = Math.sqrt(r**2 + r**2 - (2*r*r*Math.cos(θ)));
     return distance_tunnel
 }
 
 function parallaxAngle(ra1, dec1, ra2, dec2) {
-    let deltaRa = ra2-ra1;
+    var deltaRa = ra2-ra1;
     if (deltaRa < 0) {
         deltaRa = deltaRa * -1;
     }
-    let deltaDec = dec1-dec2;
+    var deltaDec = dec1-dec2;
     if (deltaDec < 0) {
         deltaDec = deltaDec * -1;
     }
-
-    let parallaxtheta = Math.sqrt(deltaRa**2 + deltaDec **2);
-
+    var parallaxtheta = Math.sqrt(deltaRa**2 + deltaDec **2);
     return parallaxtheta
 }
 
-function e_to_m_distance (att1, att2, parallaxtheta, distance_tunnel) {
-    let ANB = 360-(360-att1-att2-parallaxtheta);
-    let AOB = 360 - (ANB + 90 + 90);
-    let OAB = (180-AOB)/2;
-    let OBA = OAB;
-    let NAB = 90 - OAB
-    let NBA = 90 - OBA
-    let MAB = NAB + att1;
-    let MBA = NBA + att2;
-    let MABrad = toRad(MAB);
-    let MBArad = toRad(MBA);
-    let parallaxtheta_rad = toRad(parallaxtheta)
-    let a_to_m_length = distance_tunnel*((Math.sin(MBArad))/(Math.sin(parallaxtheta_rad)));
-    let b_to_m_length = distance_tunnel*(Math.sin(MABrad)/Math.sin(parallaxtheta_rad));
 
+function e_to_m_distance (att1, att2, parallaxtheta, distance_tunnel) {
+    var ANB = 360-(360-att1-att2-parallaxtheta);
+    var AOB = 360 - (ANB + 90 + 90);
+    var OAB = (180-AOB)/2;
+    var OBA = OAB;
+    var NAB = 90 - OAB
+    var NBA = 90 - OBA
+    var MAB = NAB + att1;
+    var MBA = NBA + att2;
+    var MABrad = toRad(MAB);
+    var MBArad = toRad(MBA);
+    var parallaxtheta_rad = toRad(parallaxtheta)
+    var a_to_m_length = distance_tunnel*((Math.sin(MBArad))/(Math.sin(parallaxtheta_rad)));
+    var b_to_m_length = distance_tunnel*(Math.sin(MABrad)/Math.sin(parallaxtheta_rad));
     return [a_to_m_length,b_to_m_length]
 }
 
 function distances_to_moon (lat1, long1, ra1, dec1, alt1, lat2, long2, ra2, dec2, alt2){
-    let arcdistance = distVincenty(lat1, long1, lat2, long2)/1000
-    let distance_tunnel = distTunnel(arcdistance)
-    let parallaxtheta = parallaxAngle(ra1,dec1,ra2,dec2)
-    let lengths_to_moon = e_to_m_distance (alt1, alt2, parallaxtheta, distance_tunnel)
+    var arcdistance = distVincenty(lat1, long1, lat2, long2)/1000
+    var distance_tunnel = distTunnel(arcdistance)
+    var parallaxtheta = parallaxAngle(ra1,dec1,ra2,dec2)
+    var lengths_to_moon = e_to_m_distance (alt1, alt2, parallaxtheta, distance_tunnel)
     return lengths_to_moon
 }
