@@ -64,7 +64,7 @@ function distVincenty(lat1, lon1, lat2, lon2) {
 ///---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 function distTunnel(arc_length) {
-    const r = 6356752.3142;
+    const r = 6356.7523142;
     const θ = arc_length/r;
     const distance_tunnel = Math.sqrt(r**2 + r**2 - (2*r*r*Math.cos(θ)));
     return distance_tunnel

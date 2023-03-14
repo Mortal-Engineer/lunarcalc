@@ -44,8 +44,8 @@
                                 document.getElementById("distance1").innerHTML = distance_to_moon[0]
                                 document.getElementById("distance2").innerHTML = distance_to_moon[1]
                                 
-                                document.getElementByID("location1").innerHTML = parseString(lat1Deg) + parseString(long1Deg)
-                                document.getElementByID("location2").innerHTML = parseString(lat2Deg) + parseString(long2Deg)                              
+                                document.getElementByID("location1").innerHTML = String(lat1Deg) + ' ' + String(long1Deg)
+                                document.getElementByID("location2").innerHTML = String(lat2Deg) + ' ' + String(long2Deg)                              
                         }
                 </script> 
         </head>
