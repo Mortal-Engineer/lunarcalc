@@ -64,7 +64,7 @@ function distVincenty(lat1, lon1, lat2, lon2) {
 ///---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 function distTunnel(arc_length) {
-    const r = 6356.7523142;
+    const r = 6356752.3142;
     const θ = arc_length/r;
     const distance_tunnel = Math.sqrt(r**2 + r**2 - (2*r*r*Math.cos(θ)));
     return distance_tunnel
@@ -79,7 +79,9 @@ function parallaxAngle(ra1, dec1, ra2, dec2) {
     if (deltaDec < 0) {
         deltaDec = deltaDec * -1;
     }
+
     let parallaxtheta = Math.sqrt(deltaRa**2 + deltaDec **2);
+
     return parallaxtheta
 }
 
@@ -97,6 +99,7 @@ function e_to_m_distance (att1, att2, parallaxtheta, distance_tunnel) {
     let parallaxtheta_rad = toRad(parallaxtheta)
     let a_to_m_length = distance_tunnel*((Math.sin(MBArad))/(Math.sin(parallaxtheta_rad)));
     let b_to_m_length = distance_tunnel*(Math.sin(MABrad)/Math.sin(parallaxtheta_rad));
+
     return [a_to_m_length,b_to_m_length]
 }
 
