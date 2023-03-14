@@ -79,33 +79,11 @@ function parallaxAngle(ra1, dec1, ra2, dec2) {
     if (deltaDec < 0) {
         deltaDec = deltaDec * -1;
     }
-<<<<<<< HEAD
-
-    let parallaxtheta = Math.sqrt(deltaRa**2 + deltaDec **2);
-
-=======
     var parallaxtheta = Math.sqrt(deltaRa**2 + deltaDec **2);
->>>>>>> 0458081 (let --> var)
     return parallaxtheta
 }
 
 function e_to_m_distance (att1, att2, parallaxtheta, distance_tunnel) {
-<<<<<<< HEAD
-    let ANB = 360-(360-att1-att2-parallaxtheta);
-    let AOB = 360 - (ANB + 90 + 90);
-    let OAB = (180-AOB)/2;
-    let OBA = OAB;
-    let NAB = 90 - OAB
-    let NBA = 90 - OBA
-    let MAB = NAB + att1;
-    let MBA = NBA + att2;
-    let MABrad = toRad(MAB);
-    let MBArad = toRad(MBA);
-    let parallaxtheta_rad = toRad(parallaxtheta)
-    let a_to_m_length = distance_tunnel*((Math.sin(MBArad))/(Math.sin(parallaxtheta_rad)));
-    let b_to_m_length = distance_tunnel*(Math.sin(MABrad)/Math.sin(parallaxtheta_rad));
-
-=======
     var ANB = 360-(360-att1-att2-parallaxtheta);
     var AOB = 360 - (ANB + 90 + 90);
     var OAB = (180-AOB)/2;
@@ -119,7 +97,6 @@ function e_to_m_distance (att1, att2, parallaxtheta, distance_tunnel) {
     var parallaxtheta_rad = toRad(parallaxtheta)
     var a_to_m_length = distance_tunnel*((Math.sin(MBArad))/(Math.sin(parallaxtheta_rad)));
     var b_to_m_length = distance_tunnel*(Math.sin(MABrad)/Math.sin(parallaxtheta_rad));
->>>>>>> 0458081 (let --> var)
     return [a_to_m_length,b_to_m_length]
 }
 
