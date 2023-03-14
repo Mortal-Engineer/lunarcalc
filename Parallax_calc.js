@@ -83,6 +83,7 @@ function parallaxAngle(ra1, dec1, ra2, dec2) {
     return parallaxtheta
 }
 
+
 function e_to_m_distance (att1, att2, parallaxtheta, distance_tunnel) {
     var ANB = 360-(360-att1-att2-parallaxtheta);
     var AOB = 360 - (ANB + 90 + 90);
