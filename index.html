@@ -44,8 +44,8 @@
                                 document.getElementById("distance1").innerHTML = distance_to_moon[0]
                                 document.getElementById("distance2").innerHTML = distance_to_moon[1]
                                 
-                                document.getElementByID("location1").innerHTML = lat1Deg, long1Deg
-                                document.getElementByID("location2").innerHTML = lat2Deg, long2Deg                              
+                                document.getElementByID("location1").innerHTML = parseString(lat1Deg) + parseString(long1Deg)
+                                document.getElementByID("location2").innerHTML = parseString(lat2Deg) + parseString(long2Deg)                              
                         }
                 </script> 
         </head>
@@ -94,10 +94,10 @@
                                 <tbody>
                                   <tr>
                                     <td id="location1">Enter Inputs</td>
-                                    <td id="location2">Enter Inputs</td>
+                                    <td id="distance1">Enter Inputs</td>
                                   </tr>
                                   <tr>
-                                    <td id="distance1">Enter Inputs</td>
+                                    <td id="location2">Enter Inputs</td>
                                     <td id="distance2">Enter Inputs</td>
                                   </tr>
                                 </tbody>
